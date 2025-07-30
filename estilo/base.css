@@ -1,0 +1,196 @@
+*{ 
+    color: white;
+    text-decoration: none;
+}
+.LOGO{
+    width: 9%;
+    margin-top: 4%;
+    margin-left: 1.9%;
+    position: fixed;
+    transition: all 1.2s ease-in-out;
+    z-index: 999;
+    animation: idleFlap 3s infinite ease-in-out;
+}
+@keyframes idleFlap {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.HEAD{
+    opacity: 95%;
+    height: 90px;
+    box-shadow: 1px 3px 5px  goldenrod;
+    width: 99%;
+    background: linear-gradient(to bottom, #ff0000, #620075);
+    border-radius: 50px 50px 50px 50px;
+    position: fixed;
+    align-items: center;
+    display: flex;
+    align-content: center;
+}
+.NAV_BAR{
+    padding: 0 200px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    gap: 10px;
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.NAV_BUTTON{
+    margin: 1.5%;
+    text-align: center;
+    background: linear-gradient(to right, black, gold);
+    border-radius: 15px;
+    border: none;
+    padding: 10px 20px;
+    display: inline-block;
+    width: 150px;
+    font-size: 15px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    box-shadow: 1px 3px 5px  gold;
+    transition: transform 0.2s ease-in-out;
+}
+.NAV_BUTTON:hover{
+    transform: scale(1.05);
+    box-shadow: 1px 5px 5px  gold;
+}
+body{
+    background-color: black;
+}
+.bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.ROD{
+    text-align: center;
+    margin-top: 20%;
+}
+
+/* Para tablets e telas médias (até 992px) */
+@media (max-width: 992px) {
+  .NAV_BAR {
+    width: 90%;
+    padding: 0 20px;
+    justify-content: center;
+  }
+  
+  .NAV_BUTTON {
+    width: auto;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  #fenix-wrapper, #fenix {
+    width: 7%;
+  }
+
+  #section0 {
+    padding-top: 15%;
+  }
+
+  #mtl {
+    font-size: 70px;
+  }
+
+  #frase {
+    font-size: 16px;
+  }
+
+  .infos, .infos2 {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-top: 8% !important;
+    text-align: left !important;
+  }
+
+  .infos_t, .infos_t2 {
+    font-size: 25px;
+  }
+
+  .infos_p, .infos_p2 {
+    font-size: 16px;
+  }
+}
+
+/* Para celulares pequenos (até 600px) */
+@media (max-width: 600px) {
+  .HEAD {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 0;
+    border-radius: 0;
+  }
+
+  .LOGO, #fenix-wrapper, #fenix {
+    width: 15%;
+    margin: 10px auto 0 auto;
+    position: relative; /* para não ficar fixo na tela pequena */
+    top: unset !important;
+    left: unset !important;
+    animation: idleFlap 3s infinite ease-in-out;
+  }
+
+  .NAV_BAR {
+    width: 100%;
+    padding: 0 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .NAV_BUTTON {
+    width: 45%;
+    margin: 5px 2.5%;
+    font-size: 14px;
+    padding: 12px 0;
+  }
+
+  #section0 {
+    padding-top: 20%;
+  }
+
+  #mtl {
+    font-size: 50px;
+  }
+
+  #frase {
+    font-size: 14px;
+  }
+
+  .infos, .infos2 {
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-top: 10% !important;
+    text-align: left !important;
+  }
+
+  .infos_t, .infos_t2 {
+    font-size: 20px;
+  }
+
+  .infos_p, .infos_p2 {
+    font-size: 14px;
+  }
+
+  #loja {
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 16px;
+  }
+
+  .ROD {
+    margin-top: 40%;
+  }
+}

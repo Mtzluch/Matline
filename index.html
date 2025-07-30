@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATLINE</title>
+    <link rel="stylesheet" href="estilo/base.css">
+    <link rel="stylesheet" href="estilo/index.css"> <!-- By Seraphim the true owner ;) -->
+</head>
+
+<body> 
+    <!-- canva -->
+    <canvas id="shootingStars" class="bg-canvas"></canvas>
+
+        <!--HEADER-->
+    <header class="HEAD">
+      <div id="fenix-wrapper">
+        <img id="fenix" class="LOGO" src="imgs/logo.png" alt=>
+        </div>
+                <!--NAV-->
+        <div class="NAV_BAR">
+            <a href="index.html" class="NAV_BUTTON">SOBRE NÓS</a>
+            <a href="revenda.html" class="NAV_BUTTON">REVENDA</a>
+            <a href="contatos.html" class="NAV_BUTTON">CONTATOS</a>
+        </div>   
+
+    </header>               
+    <!--HEADER_END-->
+
+
+        <!-- INFOS -->
+    <section id="section0">
+        <strong id="mtl">MATLINE</strong>
+            <p id="frase">"Bem-vindo à nova era da moda. A sua."</p>
+    </section>
+
+    <section id="section1" class="infos">
+        <strong class="infos_t">QUEM SOMOS?</strong>
+        <p class="infos_p"> Fundada em novembro de 2024 por Aline Winter, somos a Matline — uma loja de moda feminina e masculina localizada no sul do Brasil. Atuamos com um olhar afiado sobre as tendências atuais, combinando estilo, qualidade e autenticidade. Em constante expansão, temos como missão oferecer roupas que destacam a essência e personalidade de cada cliente, impulsionando nossa marca para um futuro de crescimento sólido e influente no mundo da moda.</p>
+    </section>
+
+    <section id="section2" class="infos2">
+        <strong class="infos_t2">ONDE PODE VER NOSSAS PEÇAS?</strong>
+        <p class="infos_p2">
+            Alem da nossa loja fisica situada em Joinville, Paranaguamirim na rua São rafael arcanjo n109, tambem temos nossa loja virtual onde atualizamos diariamente com nossas novidades
+        </p>
+        <a id="loja" href="https://matline.lojavirtualnuvem.com.br" target="_blank">CONFIRA!</a>
+    </section>
+
+    <section id="section3" class="infos">
+        <strong class="infos_t">ENTREGAS</strong>
+        <p class="infos_p">Realizamos entregas para todo o Brasil com segurança, agilidade e total rastreabilidade. Onde você estiver, sua encomenda chega até você.</p>
+    </section>
+
+    <section id="section4" class="infos2">
+        <strong class="infos_t2">REVENDA MATLINE!</strong>
+        <p class="infos_p2">
+            Junte-se ao nosso time de revendedores e faça parte da Matline. Ofereça produtos de qualidade, com estilo único e alta demanda, garantindo lucro e crescimento para você. Seja protagonista do seu sucesso e conquiste seu espaço no mercado com a força e o prestígio da nossa marca. Aqui, quem vende domina.
+        </p>
+        <a id="loja" href="revenda.html">REVENDA!</a>
+    </section>
+
+    <!--RODAPÉ-->
+    <footer class="ROD">
+        <p>© 2025 Matline. Todos os direitos reservados.</p>
+    </footer>
+    <!--RODAPÉ_END-->
+
+    <!-- SCRIPT -->
+    <script>
+const canvas = document.getElementById('shootingStars');
+const ctx = canvas.getContext('2d');
+let width, height;
+
+function resize() {
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+}
+window.addEventListener('resize', resize);
+resize();
+
+class ShootingStar {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
+    this.x = Math.random() * width ;
+    this.y = Math.random() * height /0.5; // comece na metade superior
+    this.len = 100 + Math.random() * 100;
+    this.speed = 5 + Math.random() * 5;
+    this.angle = Math.PI / 30; // 45 graus
+    this.opacity = 0;
+    this.fadeIn = true;
+  }
+
+  update() {
+    if (this.fadeIn) {
+      this.opacity += 0.05;
+      if (this.opacity >= 1) this.fadeIn = false;
+    } else {
+      this.opacity -= 0.01;
+    }
+
+    this.angle += 0.002; // gira levemente a direção
+    this.x += this.speed * Math.cos(this.angle);
+    this.y += this.speed * Math.sin(this.angle);
+
+    if (this.opacity <= 0 || this.x > width || this.y > height) {
+      this.reset();
+    }
+  }
+
+  draw() {
+  ctx.strokeStyle = `rgba(128, 0, 128, ${this.opacity})`;
+  ctx.lineWidth = 0.8;
+  ctx.beginPath();
+
+  const endX = this.x - this.len * Math.cos(this.angle);
+  const endY = this.y - this.len * Math.sin(this.angle);
+
+  // Ponto de controle da curva
+  const controlX = (this.x + endX) / 2 + 3; // curva para a direita
+  const controlY = (this.y + endY) / 2 - 0; // curva levemente para cima
+
+  ctx.moveTo(this.x, this.y);
+  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  ctx.stroke();
+}
+}
+
+const stars = [];
+for (let i = 0; i < 2.5; i++) {
+  stars.push(new ShootingStar());
+}
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  for (const star of stars) {
+    star.update();
+    star.draw();
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+
+    const fenixWrapper = document.getElementById("fenix-wrapper");
+const fenix = document.getElementById("fenix");
+
+const positions = {
+  section1: { top: '300px', left: '80%', flip: false },
+  section2: { top: '300px', left: '10%', flip: true },
+  section3: { top: '300px', left: '80%', flip: false },
+  section4: { top: '300px', left: '10%', flip: true },
+};
+
+function isInViewportCenter(element) {
+  const rect = element.getBoundingClientRect();
+  const viewportCenter = window.innerHeight / 2;
+  return rect.top < viewportCenter && rect.bottom > viewportCenter;
+}
+
+function checkSections() {
+  document.querySelectorAll("section").forEach(section => {
+    if (isInViewportCenter(section)) {
+      const sectionId = section.id;
+      const pos = positions[sectionId];
+      if (pos) {
+        fenixWrapper.style.top = pos.top;
+        fenixWrapper.style.left = pos.left;
+        fenix.style.transform = pos.flip ? 'scaleY(-1)' : 'scaleY(1)';
+      }
+    }
+  });
+}
+
+window.addEventListener("scroll", checkSections);
+window.addEventListener("load", checkSections);
+
+</script>
+
+</body>
+
+</html>

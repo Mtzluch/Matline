@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATLINE</title>
+    <link rel="stylesheet" href="estilo/base.css">
+    <link rel="stylesheet" href="estilo/revenda.css">
+</head>
+
+<body> 
+
+    <!-- canva -->
+    <canvas id="shootingStars" class="bg-canvas"></canvas>
+
+        <!--HEADER-->
+    <header class="HEAD">
+
+        <img class="LOGO" src="imgs/logo.png" alt=>
+
+                <!--NAV-->
+        <div class="NAV_BAR">
+            <a href="index.html" class="NAV_BUTTON">SOBRE NÓS</a>
+            <a href="revenda.html" class="NAV_BUTTON">REVENDA</a>
+            <a href="contatos.html" class="NAV_BUTTON">CONTATOS</a>
+        </div>   
+
+    </header>               
+    <!--HEADER_END-->
+    <section  class="sect">
+      <strong>REVENDA NOSSAS PEÇAS!</STrong>
+        <p>Já pensou em abrir seu próprio negócio, conquistar sua independência financeira ou até mesmo aumentar suas fontes de renda? A Matline te dá a oportunidade de transformar isso em realidade! Nós acreditamos no poder da parceria e queremos te ver crescendo com a gente.</p> <p>Ao revender nossas peças, você leva para o seu público um estilo moderno, de qualidade e com preços acessíveis — tudo isso com o suporte de uma marca que valoriza seus revendedores. Não importa se você está começando agora ou se já tem experiência no mercado: com a Matline, você tem liberdade para vender do seu jeito, no seu ritmo, com produtos que realmente se destacam.</p> <p>Chegou a hora de sair do plano e partir para a ação. Junte-se à Matline, aumente seus lucros e seja parte de algo maior. Comece agora mesmo a revender nossas peças e construa um futuro com estilo, atitude e propósito.</p>
+        <p class="sub">COMO FUNCIONA?</p>
+        <p>1- Você clica no botão abaixo que te encaminha para nosso WhatsApp.<br>
+        2- iniciaremos uma converça com voce para te conhecer melhor. <br>
+      3- analizaremos seu cpf caso tenha alguma pendencia. </p>
+      <a href="https://wa.me/5547984430140?text=Ol%C3%A1%2C%20tenho%20interesse%20em%20revender%20as%20pe%C3%A7as%20da%20Matline%21" target="_blank">
+      <button>
+    WhatsApp
+    </button>
+</a>
+    </section>
+
+    <!--RODAPÉ-->
+    <footer class="ROD">
+        <p>© 2025 Matline. Todos os direitos reservados.</p>
+    </footer>
+    <!--RODAPÉ_END-->
+
+    <!-- script -->
+    <script>
+const canvas = document.getElementById('shootingStars');
+const ctx = canvas.getContext('2d');
+let width, height;
+
+function resize() {
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+}
+window.addEventListener('resize', resize);
+resize();
+
+class ShootingStar {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
+    this.x = Math.random() * width ;
+    this.y = Math.random() * height /0.5; // comece na metade superior
+    this.len = 100 + Math.random() * 100;
+    this.speed = 5 + Math.random() * 5;
+    this.angle = Math.PI / 30; // 45 graus
+    this.opacity = 0;
+    this.fadeIn = true;
+  }
+
+  update() {
+    if (this.fadeIn) {
+      this.opacity += 0.05;
+      if (this.opacity >= 1) this.fadeIn = false;
+    } else {
+      this.opacity -= 0.01;
+    }
+
+    this.angle += 0.001; // gira levemente a direção
+    this.x += this.speed * Math.cos(this.angle);
+    this.y += this.speed * Math.sin(this.angle);
+
+    if (this.opacity <= 0 || this.x > width || this.y > height) {
+      this.reset();
+    }
+  }
+
+  draw() {
+  ctx.strokeStyle = `rgba(128, 0, 128, ${this.opacity})`;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+
+  const endX = this.x - this.len * Math.cos(this.angle);
+  const endY = this.y - this.len * Math.sin(this.angle);
+
+  // Ponto de controle da curva
+  const controlX = (this.x + endX) / 2 + 3; // curva para a direita
+  const controlY = (this.y + endY) / 2 - 0; // curva levemente para cima
+
+  ctx.moveTo(this.x, this.y);
+  ctx.quadraticCurveTo(controlX, controlY, endX, endY);
+  ctx.stroke();
+}
+}
+
+const stars = [];
+for (let i = 0; i < 2.5; i++) {
+  stars.push(new ShootingStar());
+}
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  for (const star of stars) {
+    star.update();
+    star.draw();
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+
+</html>
