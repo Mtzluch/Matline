@@ -1,0 +1,115 @@
+*{ 
+    color: white;
+    text-decoration: none;
+}
+.LOGO{
+    width: 9%;
+    margin-top: 4%;
+    margin-left: 1.9%;
+    position: fixed;
+    transition: all 1.2s ease-in-out;
+    z-index: 999;
+    animation: idleFlap 3s infinite ease-in-out;
+}
+@keyframes idleFlap {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.HEAD{
+    opacity: 95%;
+    height: 90px;
+    box-shadow: 1px 3px 5px  goldenrod;
+    width: 99%;
+    background: linear-gradient(to bottom, #ff0000, #620075);
+    border-radius: 50px 50px 50px 50px;
+    position: fixed;
+    align-items: center;
+    display: flex;
+    align-content: center;
+}
+.NAV_BAR{
+    padding: 0 200px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    gap: 10px;
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.NAV_BUTTON{
+    margin: 1.5%;
+    text-align: center;
+    background: linear-gradient(to right, black, gold);
+    border-radius: 15px;
+    border: none;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 15px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    box-shadow: 1px 3px 5px  gold;
+    transition: transform 0.2s ease-in-out;
+}
+.NAV_BUTTON:hover{
+    transform: scale(1.05);
+    box-shadow: 1px 5px 5px  gold;
+}
+body{
+    background-color: black;
+}
+.bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.ROD{
+    text-align: center;
+    margin-top: 20%;
+}
+
+/* Para tablets e telas médias (até 992px) */
+@media (max-width: 992px) {
+
+
+/*celulares*/
+@media (max-width: 600px) {
+
+
+.HEAD{
+    opacity: 95%;
+    width: 96%;
+    position: fixed;
+    align-items: center;
+    display: flex;
+    align-content: center;
+}    
+.NAV_BUTTON{
+    margin: 1.5%;
+    text-align: center;
+    background: linear-gradient(to right, black, gold);
+    border-radius: 15px;
+    border: none;
+    padding: 8px 20px;
+    display: inline-block;
+    font-size: 10px;
+    }
+
+.NAV_BAR{
+     padding: 0 10px; /* Menos padding para dar espaço real */
+    margin: 0 auto;
+    justify-content: center;
+    gap: 10px;
+    width: 100%; /* Use 100% para aproveitar todo o espaço */
+    display: flex;
+    flex-wrap: wrap;
+}    
+}}
